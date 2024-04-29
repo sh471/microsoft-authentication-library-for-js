@@ -1,0 +1,137 @@
+/**
+ * Config file for API Extractor.  For more info, please visit: https://api-extractor.com
+ */
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",
+  "bundledPackages": [],
+
+  /**
+   * Configures how the API report file (*.api.md) will be generated.
+   */
+  "apiReport": {
+    /**
+     * (REQUIRED) Whether to generate an API report.
+     */
+    "enabled": true,
+
+    /**
+     * The filename for the API report files.  It will be combined with "reportFolder" or "reportTempFolder" to produce
+     * a full file path.
+     *
+     * The file extension should be ".api.md", and the string should not contain a path separator such as "\" or "/".
+     *
+     * SUPPORTED TOKENS: <packageName>, <unscopedPackageName>
+     * DEFAULT VALUE: "<unscopedPackageName>.api.md"
+     */
+    "reportFileName": "<unscopedPackageName>.api.md",
+
+    /**
+     * Specifies the folder where the API report file is written.  The file name portion is determined by
+     * the "reportFileName" setting.
+     *
+     * The API report file is normally tracked by Git.  Changes to it can be used to trigger a branch policy,
+     * e.g. for an API review.
+     *
+     * The path is resolved relative to the folder of the config file that contains the setting; to change this,
+     * prepend a folder token such as "<projectFolder>".
+     *
+     * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
+     * DEFAULT VALUE: "<projectFolder>/temp/"
+     */
+    "reportFolder": "<projectFolder>/docs/",
+
+    /**
+     * Specifies the folder where the temporary report file is written.  The file name portion is determined by
+     * the "reportFileName" setting.
+     *
+     * After the temporary file is written to disk, it is compared with the file in the "reportFolder".
+     * If they are different, a production build will fail.
+     *
+     * The path is resolved relative to the folder of the config file that contains the setting; to change this,
+     * prepend a folder token such as "<projectFolder>".
+     *
+     * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
+     * DEFAULT VALUE: "<projectFolder>/temp/"
+     */
+    "reportTempFolder": "<projectFolder>/temp/"
+
+    /**
+     * Whether "forgotten exports" should be included in the API report file. Forgotten exports are declarations
+     * flagged with `ae-forgotten-export` warnings. See https://api-extractor.com/pages/messages/ae-forgotten-export/ to
+     * learn more.
+     *
+     * DEFAULT VALUE: "false"
+     */
+    // "includeForgottenExports": false
+  },
+
+  /**
+   * Configures how the doc model file (*.api.json) will be generated.
+   */
+  "docModel": {
+    /**
+     * (REQUIRED) Whether to generate a doc model file.
+     */
+    "enabled": true,
+    "apiJsonFilePath": "<projectFolder>/docs/<unscopedPackageName>.api.json"
+  },
+
+  /**
+   * Configures how the .d.ts rollup file will be generated.
+   */
+  "dtsRollup": {
+    "enabled": false
+  },
+
+  /**
+   * Configures how API Extractor reports error and warning messages produced during analysis.
+   *
+   * There are three sources of messages:  compiler messages, API Extractor messages, and TSDoc messages.
+   */
+  "messages": {
+    /**
+     * Configures handling of diagnostic messages reported by the TypeScript compiler engine while analyzing
+     * the input .d.ts files.
+     *
+     * TypeScript message identifiers start with "TS" followed by an integer.  For example: "TS2551"
+     *
+     * DEFAULT VALUE:  A single "default" entry with logLevel=warning.
+     */
+    "compilerMessageReporting": {
+      /**
+       * Configures the default routing for messages that don't match an explicit rule in this table.
+       */
+      "default": {
+        "logLevel": "warning"
+      }
+    },
+
+    /**
+     * Configures handling of messages reported by API Extractor during its analysis.
+     *
+     * API Extractor message identifiers start with "ae-".  For example: "ae-extra-release-tag"
+     *
+     * DEFAULT VALUE: See api-extractor-defaults.json for the complete table of extractorMessageReporting mappings
+     */
+    "extractorMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+        // "addToApiReportFile": false
+      }
+    },
+
+    /**
+     * Configures handling of messages reported by the TSDoc parser when analyzing code comments.
+     *
+     * TSDoc message identifiers start with "tsdoc-".  For example: "tsdoc-link-tag-unescaped-text"
+     *
+     * DEFAULT VALUE:  A single "default" entry with logLevel=warning.
+     */
+    "tsdocMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    }
+  }
+}
