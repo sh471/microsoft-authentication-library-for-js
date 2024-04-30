@@ -1082,7 +1082,7 @@ Account: &lt;<!-- -->home\_account\_id<!-- -->&gt;<!-- -->-<environment>-<!-- --
 
 </td><td>
 
-Account object with the following signature: - homeAccountId - Home account identifier for this account object - environment - Entity which issued the token represented by the domain of the issuer (e.g. login.microsoftonline.com) - tenantId - Full tenant or organizational id that this account belongs to - username - preferred\_username claim of the id\_token that represents this account - localAccountId - Local, tenant-specific account identifer for this account object, usually used in legacy cases - name - Full name for the account, including given name and family name - idToken - raw ID token - idTokenClaims - Object contains claims from ID token - nativeAccountId - The user's native account ID - tenantProfiles - Map of tenant profile objects for each tenant that the account has authenticated with in the browser
+Object representing a user's account information
 
 
 </td></tr>

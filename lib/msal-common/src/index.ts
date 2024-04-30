@@ -8,6 +8,12 @@
  * @module @azure/msal-common
  */
 
+import * as AuthToken from "./account/AuthToken";
+import * as AuthorityFactory from "./authority/AuthorityFactory";
+import * as CacheHelpers from "./cache/utils/CacheHelpers";
+import * as AADServerParamKeys from "./constants/AADServerParamKeys";
+import * as TimeUtils from "./utils/TimeUtils";
+import * as UrlUtils from "./utils/UrlUtils";
 export { AuthorizationCodeClient } from "./client/AuthorizationCodeClient";
 export { RefreshTokenClient } from "./client/RefreshTokenClient";
 export { SilentFlowClient } from "./client/SilentFlowClient";
@@ -36,7 +42,7 @@ export {
     tenantIdMatchesHomeTenant,
     buildTenantProfileFromIdTokenClaims,
 } from "./account/AccountInfo";
-export * as AuthToken from "./account/AuthToken";
+export { AuthToken };
 export {
     TokenClaims,
     getTenantIdFromIdTokenClaims,
@@ -59,7 +65,7 @@ export {
     AzureCloudInstance,
     StaticAuthorityOptions,
 } from "./authority/AuthorityOptions";
-export * as AuthorityFactory from "./authority/AuthorityFactory";
+export { AuthorityFactory };
 export { AuthorityType } from "./authority/AuthorityType";
 export { ProtocolMode } from "./authority/ProtocolMode";
 export { OIDCOptions } from "./authority/OIDCOptions";
@@ -81,7 +87,7 @@ export {
 } from "./cache/utils/CacheTypes";
 export { CacheRecord } from "./cache/entities/CacheRecord";
 export { CredentialEntity } from "./cache/entities/CredentialEntity";
-export * as CacheHelpers from "./cache/utils/CacheHelpers";
+export { CacheHelpers };
 export { AppMetadataEntity } from "./cache/entities/AppMetadataEntity";
 export { AccountEntity } from "./cache/entities/AccountEntity";
 export { IdTokenEntity } from "./cache/entities/IdTokenEntity";
@@ -208,7 +214,7 @@ export {
     DEFAULT_TOKEN_RENEWAL_OFFSET_SEC,
     JsonWebTokenTypes,
 } from "./utils/Constants";
-export * as AADServerParamKeys from "./constants/AADServerParamKeys";
+export { AADServerParamKeys };
 export { StringUtils } from "./utils/StringUtils";
 export { StringDict } from "./utils/MsalTypes";
 export {
@@ -216,8 +222,8 @@ export {
     RequestStateObject,
     LibraryStateObject,
 } from "./utils/ProtocolUtils";
-export * as TimeUtils from "./utils/TimeUtils";
-export * as UrlUtils from "./utils/UrlUtils";
+export { TimeUtils };
+export { UrlUtils };
 export * from "./utils/FunctionWrappers";
 // Server Telemetry
 export { ServerTelemetryManager } from "./telemetry/server/ServerTelemetryManager";

@@ -4,27 +4,27 @@
  */
 
 import { TokenClaims } from "./TokenClaims";
+
 /**
- * Account object with the following signature:
- * - homeAccountId          - Home account identifier for this account object
- * - environment            - Entity which issued the token represented by the domain of the issuer (e.g. login.microsoftonline.com)
- * - tenantId               - Full tenant or organizational id that this account belongs to
- * - username               - preferred_username claim of the id_token that represents this account
- * - localAccountId         - Local, tenant-specific account identifer for this account object, usually used in legacy cases
- * - name                   - Full name for the account, including given name and family name
- * - idToken                - raw ID token
- * - idTokenClaims          - Object contains claims from ID token
- * - nativeAccountId        - The user's native account ID
- * - tenantProfiles         - Map of tenant profile objects for each tenant that the account has authenticated with in the browser
+ * Object representing a user's account information
+ * @public
  */
 export type AccountInfo = {
+    // Home account identifier for this account object
     homeAccountId: string;
+    // Entity which issued the token represented by the domain of the issuer (e.g. login.microsoftonline.com)
     environment: string;
+    // Full tenant or organizational id that this account belongs to
     tenantId: string;
+    // preferred_username claim of the id_token that represents this account
     username: string;
+    // Local, tenant-specific account identifer for this account object, usually used in legacy cases
     localAccountId: string;
+    // Full name for the account, including given name and family name
     name?: string;
+    // raw encoded ID token JWT string
     idToken?: string;
+    // Parsed claims from decoded ID token
     idTokenClaims?: TokenClaims & {
         [key: string]:
             | string
@@ -34,21 +34,23 @@ export type AccountInfo = {
             | undefined
             | unknown;
     };
+    // The user's native account ID
     nativeAccountId?: string;
+    // Authority type which issued the ID token the account was built from
     authorityType?: string;
+    // Map of tenant profile objects for each tenant that the account has authenticated with in the browser
     tenantProfiles?: Map<string, TenantProfile>;
 };
 
 /**
  * Account details that vary across tenants for the same user
+ * @public
  */
 export type TenantProfile = Pick<
     AccountInfo,
     "tenantId" | "localAccountId" | "name"
 > & {
-    /**
-     * - isHomeTenant           - True if this is the home tenant profile of the account, false if it's a guest tenant profile
-     */
+    // True if this is the home tenant profile of the account, false if it's a guest tenant profile
     isHomeTenant?: boolean;
 };
 
